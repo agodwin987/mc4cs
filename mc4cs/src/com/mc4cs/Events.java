@@ -13,12 +13,13 @@ public class Events implements Listener{
 	public void onJoin(PlayerJoinEvent e){
 		Player p = e.getPlayer();
 		Long time = System.currentTimeMillis();
-		Main.playerHashMap.put(p.getName(), time);
+		Main.onlineHashMap.put(p.getName(), time);
 	}
 	@EventHandler
 	public void onLeave(PlayerQuitEvent e){
 		Player p = e.getPlayer();
 		Long time = System.currentTimeMillis();
-		Main.playerHashMap.put(p.getName(), time);
+		Long timeLoggedIn = Main.onlineHashMap.get(p.getName());
+		Main.offlineHashMap.put(p.getName(), time-timeLoggedIn);
 	}
 }
